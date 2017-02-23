@@ -1,0 +1,61 @@
+@import "variables";
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+    background-color: #563d7c;
+
+}
+
+.container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.item{
+	background-color: #6f5a90;
+	color: #fff;
+	padding: 9px;
+	font-family: 'Roboto', sans-serif;
+	border-radius: .4rem;
+	text-align: center;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+[class*="col-"] {
+    float: left;
+    padding: $grid-gutter;
+}
+
+
+@for $i from 1 through $grid-col{ 
+    .col-#{$i} {
+      width: 100% / $grid-col * $i;
+    }
+}
+
+
+@media (max-width:720px) {
+    .col {
+        padding: 0 3px 3px 2px; 
+
+    }
+
+    $grid-colClassList: ();
+    @for $i from 1 through $grid-col {
+        $grid-colClassList: join($grid-colClassList, unquote(".col-#{$i}"), comma);
+    }
+    #{$grid-colClassList} {
+        width: 100%;
+    }
+}
